@@ -59,8 +59,9 @@ module.exports = function (commander, filenames, opts) {
     // add the inline sourcemap comment if we've either explicitly asked for inline source
     // maps, or we've requested them without any output file
     if (commander.sourceMaps === "inline" || (!commander.outFile && commander.sourceMaps)) {
-      code += "\n" + convertSourceMap.fromObject(map).toComment();
+      code += "\n" + JSON.stringify(map); //convertSourceMap.fromObject(map).toComment();
     }
+    util.log("source map: " + JSON.stringify(map));
 
     return {
       map: map,
